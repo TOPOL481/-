@@ -21,6 +21,7 @@
       transition: background-color 0.45s ease;
     }
 
+    /* Слой мишеней */
     #targets {
       position: fixed;
       inset: 0;
@@ -30,15 +31,15 @@
 
     .target {
       position: absolute;
-      width: 72px;
-      height: 72px;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
       cursor: crosshair;
       pointer-events: auto;
       background:
-        radial-gradient(circle at center, #fff 8%, #ef4444 9%, #ef4444 22%, #fff 23%, #fff 28%, #f59e0b 29%, #f59e0b 42%, #fff 43%, #fff 48%, #ef4444 49%, #ef4444 62%, #fff 63%);
+        radial-gradient(circle at center, #ffffff 8%, #ef4444 9%, #ef4444 22%, #ffffff 23%, #ffffff 28%, #f59e0b 29%, #f59e0b 42%, #ffffff 43%, #ffffff 48%, #6366f1 49%, #6366f1 62%, #ffffff 63%);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-      animation: targetLife 5.5s ease-in-out forwards;
+      animation: targetLife 5.8s ease-in-out forwards;
     }
 
     .target::after {
@@ -71,32 +72,49 @@
       }
     }
 
-    .plus-five {
+    .plus-float {
       position: fixed;
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 800;
       color: #16a34a;
-      text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9), 0 0 20px rgba(22, 163, 74, 0.6);
+      text-shadow:
+        0 2px 8px rgba(255, 255, 255, 0.9),
+        0 0 20px rgba(22, 163, 74, 0.6);
       pointer-events: none;
       z-index: 20;
       animation: floatUp 1.1s ease-out forwards;
     }
 
+    .plus-float.center {
+      color: #22c55e;
+      text-shadow:
+        0 2px 10px rgba(255, 255, 255, 0.95),
+        0 0 24px rgba(34, 197, 94, 0.75);
+    }
+
+    .plus-float.edge {
+      color: #fbbf24;
+      text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.45),
+        0 0 14px rgba(251, 191, 36, 0.7);
+    }
+
     @keyframes floatUp {
       0% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(0.6);
+        transform: translate(-50%, -50%) scale(0.7);
       }
       30% {
         opacity: 1;
-        transform: translate(-50%, -80%) scale(1.15);
+        transform: translate(-50%, -80%) scale(1.1);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -140%) scale(1.3);
+        transform: translate(-50%, -145%) scale(1.25);
       }
     }
 
+    /* Центральная панель */
     .panel {
       position: relative;
       z-index: 10;
@@ -109,14 +127,24 @@
     }
 
     .counter {
-      font-size: 1.05rem;
-      color: #555;
       margin: 0 0 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .counter-label {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #4b5563;
+      letter-spacing: 0.03em;
+      transition: color 0.6s ease;
     }
 
     .counter strong {
-      font-size: 2rem;
-      color: #111;
+      font-size: 2.3rem;
+      color: #111827;
       transition: transform 0.2s ease, color 0.2s ease;
     }
 
@@ -131,30 +159,31 @@
       color: #888;
     }
 
+    /* Кнопка смены фона */
     #btn {
       position: relative;
-      padding: 18px 42px;
-      font-size: 1.25rem;
+      padding: 18px 46px;
+      font-size: 1.3rem;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       border: none;
       border-radius: 14px;
       cursor: pointer;
       color: #fff;
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 45%, #ec4899 100%);
-      background-size: 200% 200%;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 40%, #ec4899 75%, #f97316 100%);
+      background-size: 220% 220%;
       box-shadow:
         0 8px 28px rgba(99, 102, 241, 0.45),
-        0 0 0 0 rgba(139, 92, 246, 0.5);
+        0 0 0 0 rgba(236, 72, 153, 0.5);
       animation: btnGlow 2.5s ease-in-out infinite;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     #btn:hover {
-      transform: translateY(-3px) scale(1.04);
+      transform: translateY(-3px) scale(1.05);
       box-shadow:
-        0 14px 36px rgba(99, 102, 241, 0.55),
-        0 0 24px rgba(236, 72, 153, 0.4);
+        0 14px 38px rgba(99, 102, 241, 0.6),
+        0 0 26px rgba(236, 72, 153, 0.45);
     }
 
     #btn:active {
@@ -168,7 +197,161 @@
       }
       50% {
         background-position: 100% 50%;
-        box-shadow: 0 10px 32px rgba(236, 72, 153, 0.5), 0 0 20px rgba(139, 92, 246, 0.35);
+        box-shadow: 0 10px 32px rgba(236, 72, 153, 0.55), 0 0 20px rgba(248, 113, 113, 0.40);
+      }
+    }
+
+    /* Магазин */
+    .shop-toggle {
+      position: fixed;
+      top: 16px;
+      right: 18px;
+      z-index: 30;
+    }
+
+    .shop-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: rgba(15, 23, 42, 0.94);
+      color: #f9fafb;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(6px);
+    }
+
+    .shop-button span.icon {
+      font-size: 1.1rem;
+    }
+
+    .shop-panel {
+      position: fixed;
+      top: 64px;
+      right: 18px;
+      width: 260px;
+      max-width: calc(100% - 32px);
+      padding: 16px 16px 14px;
+      background: rgba(15, 23, 42, 0.97);
+      color: #e5e7eb;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+      font-size: 0.9rem;
+      transform-origin: top right;
+      transform: scale(0.9);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 29;
+    }
+
+    .shop-panel.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    .shop-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+    }
+
+    .shop-balance {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .shop-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .shop-item {
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(30, 64, 175, 0.35);
+      border: 1px solid rgba(129, 140, 248, 0.55);
+    }
+
+    .shop-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+
+    .shop-item-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .shop-item-level {
+      font-size: 0.8rem;
+      color: #a5b4fc;
+    }
+
+    .shop-item-desc {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .shop-item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .shop-cost {
+      font-size: 0.8rem;
+      color: #fde68a;
+    }
+
+    .shop-buy-btn {
+      flex-shrink: 0;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-weight: 600;
+    }
+
+    .shop-buy-btn:disabled {
+      cursor: default;
+      opacity: 0.35;
+      background: #4b5563;
+      color: #e5e7eb;
+    }
+
+    .shop-note {
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 640px) {
+      .panel {
+        padding: 24px 20px;
+        margin: 0 14px;
+      }
+      .counter strong {
+        font-size: 1.9rem;
+      }
+      #btn {
+        width: 100%;
       }
     }
   </style>
@@ -176,14 +359,54 @@
 <body>
   <div id="targets" aria-hidden="true"></div>
 
+  <div class="shop-toggle">
+    <button id="shopToggle" class="shop-button" type="button">
+      <span class="icon">🛒</span>
+      <span>Магазин</span>
+    </button>
+  </div>
+
+  <div id="shopPanel" class="shop-panel" aria-hidden="true">
+    <p class="shop-title">Магазин улучшений</p>
+    <p class="shop-balance">Баланс: <span id="shopBalance">0</span> смен</p>
+    <div class="shop-items">
+      <div class="shop-item">
+        <div class="shop-item-header">
+          <span class="shop-item-title">Усилить кнопку</span>
+          <span class="shop-item-level" id="btnLevel">уровень 1</span>
+        </div>
+        <p class="shop-item-desc">Увеличивает очки за нажатие кнопки смены фона.</p>
+        <div class="shop-item-footer">
+          <span class="shop-cost" id="btnCost">Цена: 30 смен</span>
+          <button id="btnBuy" class="shop-buy-btn" type="button">Купить</button>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="shop-item-header">
+          <span class="shop-item-title">Усилить мишени</span>
+          <span class="shop-item-level" id="targetLevel">уровень 1</span>
+        </div>
+        <p class="shop-item-desc">Увеличивает очки за попадания по мишеням.</p>
+        <div class="shop-item-footer">
+          <span class="shop-cost" id="targetCost">Цена: 45 смен</span>
+          <button id="targetBuy" class="shop-buy-btn" type="button">Купить</button>
+        </div>
+      </div>
+    </div>
+    <p class="shop-note">Цены растут с уровнем. Копи смены и усиливайся!</p>
+  </div>
+
   <div class="panel">
-    <p class="counter">Смен цвета: <strong id="count">0</strong></p>
+    <p class="counter">
+      <span id="label" class="counter-label">Смен цвета:</span>
+      <strong id="count">0</strong>
+    </p>
     <button id="btn" type="button">🎨 Сменить фон</button>
-    <p class="hint">Кликай по мишеням — +5 к счёту</p>
+    <p class="hint">Кликай по мишеням — точнее попадание = больше очков</p>
   </div>
 
   <script>
-    const colors = [
+    const bgColors = [
       "#fca5a5", "#fb923c", "#fde047", "#86efac", "#5eead4",
       "#93c5fd", "#a5b4fc", "#c4b5fd", "#f0abfc", "#fda4af",
       "#fdba74", "#bef264", "#67e8f9", "#7dd3fc", "#818cf8",
@@ -196,12 +419,62 @@
       "#5352ed", "#ff6b81", "#dfe6e9", "#fd79a8", "#6c5ce7"
     ];
 
+    const labelColors = [
+      "#111827", "#4b5563", "#0369a1", "#7c2d12",
+      "#065f46", "#7c3aed", "#b91c1c", "#0f766e",
+      "#1d4ed8", "#b45309"
+    ];
+
     let colorIndex = 0;
     let changeCount = 0;
 
+    let buttonLevel = 1;
+    let targetLevel = 1;
+    let buttonBase = 1;
+    let targetCenterBase = 15;
+    let targetMidBase = 8;
+    let targetEdgeBase = 3;
+
     const countEl = document.getElementById("count");
+    const labelEl = document.getElementById("label");
     const btn = document.getElementById("btn");
     const targetsLayer = document.getElementById("targets");
+
+    const shopToggle = document.getElementById("shopToggle");
+    const shopPanel = document.getElementById("shopPanel");
+    const shopBalance = document.getElementById("shopBalance");
+    const btnLevelEl = document.getElementById("btnLevel");
+    const targetLevelEl = document.getElementById("targetLevel");
+    const btnCostEl = document.getElementById("btnCost");
+    const targetCostEl = document.getElementById("targetCost");
+    const btnBuy = document.getElementById("btnBuy");
+    const targetBuy = document.getElementById("targetBuy");
+
+    function getButtonClickValue() {
+      return buttonBase + (buttonLevel - 1) * 1.5;
+    }
+
+    function getTargetMultiplier() {
+      return 1 + (targetLevel - 1) * 0.4;
+    }
+
+    function buttonUpgradeCost() {
+      return 30 + (buttonLevel - 1) * 35;
+    }
+
+    function targetUpgradeCost() {
+      return 45 + (targetLevel - 1) * 40;
+    }
+
+    function updateShopUI() {
+      shopBalance.textContent = changeCount.toFixed(0);
+      btnLevelEl.textContent = `уровень ${buttonLevel}`;
+      targetLevelEl.textContent = `уровень ${targetLevel}`;
+      btnCostEl.textContent = `Цена: ${buttonUpgradeCost()} смен`;
+      targetCostEl.textContent = `Цена: ${targetUpgradeCost()} смен`;
+      btnBuy.disabled = changeCount < buttonUpgradeCost();
+      targetBuy.disabled = changeCount < targetUpgradeCost();
+    }
 
     function bumpCounter() {
       countEl.classList.add("bump");
@@ -209,19 +482,26 @@
     }
 
     function setCount(value) {
-      changeCount = value;
-      countEl.textContent = changeCount;
+      changeCount = Math.max(0, value);
+      countEl.textContent = changeCount.toFixed(0);
       bumpCounter();
+
+      const labelColor = labelColors[changeCount % labelColors.length];
+      labelEl.style.color = labelColor;
     }
 
     function addToCount(amount) {
+      if (amount <= 0) return;
       setCount(changeCount + amount);
+      updateShopUI();
     }
 
-    function showPlusFive(x, y) {
+    function showPlus(value, x, y, type) {
       const el = document.createElement("span");
-      el.className = "plus-five";
-      el.textContent = "+5";
+      el.className = "plus-float";
+      if (type === "center") el.classList.add("center");
+      if (type === "edge") el.classList.add("edge");
+      el.textContent = `+${value.toFixed(0)}`;
       el.style.left = x + "px";
       el.style.top = y + "px";
       document.body.appendChild(el);
@@ -229,13 +509,16 @@
     }
 
     btn.addEventListener("click", () => {
-      colorIndex = (colorIndex + 1) % colors.length;
-      document.body.style.backgroundColor = colors[colorIndex];
-      addToCount(1);
+      colorIndex = (colorIndex + 1) % bgColors.length;
+      document.body.style.backgroundColor = bgColors[colorIndex];
+      const value = getButtonClickValue();
+      addToCount(value);
+      const rect = btn.getBoundingClientRect();
+      showPlus(value, rect.left + rect.width / 2, rect.top, "button");
     });
 
     function spawnTarget() {
-      const size = 72;
+      const size = 76;
       const pad = 24;
       const maxX = window.innerWidth - size - pad;
       const maxY = window.innerHeight - size - pad;
@@ -257,7 +540,8 @@
       const target = document.createElement("button");
       target.type = "button";
       target.className = "target";
-      target.setAttribute("aria-label", "Мишень +5");
+      target.setAttribute("aria-label", "Мишень");
+
       target.style.left = x + "px";
       target.style.top = y + "px";
 
@@ -267,9 +551,34 @@
         if (hit) return;
         hit = true;
         e.stopPropagation();
+
         const rect = target.getBoundingClientRect();
-        showPlusFive(rect.left + rect.width / 2, rect.top + rect.height / 2);
-        addToCount(5);
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const dx = e.clientX - centerX;
+        const dy = e.clientY - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const radius = rect.width / 2;
+        const normalized = dist / radius;
+
+        let baseValue;
+        let type;
+
+        if (normalized <= 0.22) {
+          baseValue = targetCenterBase;
+          type = "center";
+        } else if (normalized <= 0.55) {
+          baseValue = targetMidBase;
+          type = "mid";
+        } else {
+          baseValue = targetEdgeBase;
+          type = "edge";
+        }
+
+        const finalValue = baseValue * getTargetMultiplier();
+        addToCount(finalValue);
+        showPlus(finalValue, centerX, centerY, type);
+
         target.style.animation = "none";
         target.style.opacity = "0";
         target.style.transform = "scale(1.4)";
@@ -285,7 +594,30 @@
     }
 
     spawnTarget();
-    setInterval(spawnTarget, 1800);
+    setInterval(spawnTarget, 1900);
+
+    shopToggle.addEventListener("click", () => {
+      const open = shopPanel.classList.toggle("open");
+      shopPanel.setAttribute("aria-hidden", open ? "false" : "true");
+    });
+
+    btnBuy.addEventListener("click", () => {
+      const cost = buttonUpgradeCost();
+      if (changeCount < cost) return;
+      setCount(changeCount - cost);
+      buttonLevel += 1;
+      updateShopUI();
+    });
+
+    targetBuy.addEventListener("click", () => {
+      const cost = targetUpgradeCost();
+      if (changeCount < cost) return;
+      setCount(changeCount - cost);
+      targetLevel += 1;
+      updateShopUI();
+    });
+
+    updateShopUI();
   </script>
 </body>
 </html>
