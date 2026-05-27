@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Смена цвета фона</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -21,7 +19,6 @@
       transition: background-color 0.45s ease;
     }
 
-    /* Слой мишеней */
     #targets {
       position: fixed;
       inset: 0;
@@ -49,32 +46,26 @@
       width: 10px;
       height: 10px;
       margin: -5px 0 0 -5px;
-      background: #1e293b;
+      background: #0f172a;
       border-radius: 50%;
     }
 
+    .target.gold {
+      background:
+        radial-gradient(circle at center, #ffffff 8%, #fbbf24 9%, #fbbf24 22%, #ffffff 23%, #ffffff 28%, #fde68a 29%, #fde68a 42%, #ffffff 43%, #ffffff 48%, #f59e0b 49%, #f59e0b 62%, #ffffff 63%);
+      box-shadow: 0 6px 26px rgba(251, 191, 36, 0.55), 0 4px 20px rgba(0, 0, 0, 0.22);
+    }
+
     @keyframes targetLife {
-      0% {
-        opacity: 0;
-        transform: scale(0.4);
-      }
-      12% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      78% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0.85);
-      }
+      0% { opacity: 0; transform: scale(0.4); }
+      12% { opacity: 1; transform: scale(1); }
+      78% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.85); }
     }
 
     .plus-float {
       position: fixed;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 800;
       color: #16a34a;
       text-shadow:
@@ -99,22 +90,19 @@
         0 0 14px rgba(251, 191, 36, 0.7);
     }
 
-    @keyframes floatUp {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0.7);
-      }
-      30% {
-        opacity: 1;
-        transform: translate(-50%, -80%) scale(1.1);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -145%) scale(1.25);
-      }
+    .plus-float.gold {
+      color: #fbbf24;
+      text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.4),
+        0 0 26px rgba(251, 191, 36, 0.85);
     }
 
-    /* Центральная панель */
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(0.7); }
+      30% { opacity: 1; transform: translate(-50%, -80%) scale(1.1); }
+      100% { opacity: 0; transform: translate(-50%, -145%) scale(1.25); }
+    }
+
     .panel {
       position: relative;
       z-index: 10;
@@ -135,15 +123,15 @@
     }
 
     .counter-label {
-      font-size: 1.15rem;
-      font-weight: 600;
+      font-size: 1.25rem;
+      font-weight: 700;
       color: #4b5563;
       letter-spacing: 0.03em;
       transition: color 0.6s ease;
     }
 
     .counter strong {
-      font-size: 2.3rem;
+      font-size: 2.35rem;
       color: #111827;
       transition: transform 0.2s ease, color 0.2s ease;
     }
@@ -159,36 +147,33 @@
       color: #888;
     }
 
-    /* Кнопка смены фона */
     #btn {
       position: relative;
-      padding: 18px 46px;
-      font-size: 1.3rem;
+      padding: 18px 42px;
+      font-size: 1.25rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       border: none;
       border-radius: 14px;
       cursor: pointer;
       color: #fff;
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 40%, #ec4899 75%, #f97316 100%);
-      background-size: 220% 220%;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 45%, #ec4899 100%);
+      background-size: 200% 200%;
       box-shadow:
         0 8px 28px rgba(99, 102, 241, 0.45),
-        0 0 0 0 rgba(236, 72, 153, 0.5);
+        0 0 0 0 rgba(139, 92, 246, 0.5);
       animation: btnGlow 2.5s ease-in-out infinite;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     #btn:hover {
-      transform: translateY(-3px) scale(1.05);
+      transform: translateY(-3px) scale(1.04);
       box-shadow:
-        0 14px 38px rgba(99, 102, 241, 0.6),
-        0 0 26px rgba(236, 72, 153, 0.45);
+        0 14px 36px rgba(99, 102, 241, 0.55),
+        0 0 24px rgba(236, 72, 153, 0.4);
     }
 
-    #btn:active {
-      transform: translateY(0) scale(0.97);
-    }
+    #btn:active { transform: translateY(0) scale(0.97); }
 
     @keyframes btnGlow {
       0%, 100% {
@@ -197,17 +182,12 @@
       }
       50% {
         background-position: 100% 50%;
-        box-shadow: 0 10px 32px rgba(236, 72, 153, 0.55), 0 0 20px rgba(248, 113, 113, 0.40);
+        box-shadow: 0 10px 32px rgba(236, 72, 153, 0.5), 0 0 20px rgba(139, 92, 246, 0.35);
       }
     }
 
     /* Магазин */
-    .shop-toggle {
-      position: fixed;
-      top: 16px;
-      right: 18px;
-      z-index: 30;
-    }
+    .shop-toggle { position: fixed; top: 16px; right: 18px; z-index: 30; }
 
     .shop-button {
       display: inline-flex;
@@ -226,15 +206,13 @@
       backdrop-filter: blur(6px);
     }
 
-    .shop-button span.icon {
-      font-size: 1.1rem;
-    }
+    .shop-button span.icon { font-size: 1.1rem; }
 
     .shop-panel {
       position: fixed;
       top: 64px;
       right: 18px;
-      width: 260px;
+      width: 290px;
       max-width: calc(100% - 32px);
       padding: 16px 16px 14px;
       background: rgba(15, 23, 42, 0.97);
@@ -250,109 +228,83 @@
       z-index: 29;
     }
 
-    .shop-panel.open {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(1);
-    }
-
-    .shop-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin: 0 0 4px;
-    }
-
-    .shop-balance {
-      font-size: 0.85rem;
-      color: #9ca3af;
-      margin-bottom: 10px;
-    }
-
-    .shop-items {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 6px;
-    }
+    .shop-panel.open { opacity: 1; pointer-events: auto; transform: scale(1); }
+    .shop-title { font-size: 0.95rem; font-weight: 700; margin: 0 0 4px; }
+    .shop-balance { font-size: 0.85rem; color: #9ca3af; margin-bottom: 10px; }
+    .shop-items { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
 
     .shop-item {
-      padding: 8px 10px;
+      padding: 10px 10px;
       border-radius: 12px;
       background: rgba(30, 64, 175, 0.35);
       border: 1px solid rgba(129, 140, 248, 0.55);
     }
 
-    .shop-item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2px;
-    }
-
-    .shop-item-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .shop-item-level {
-      font-size: 0.8rem;
-      color: #a5b4fc;
-    }
-
-    .shop-item-desc {
-      font-size: 0.8rem;
-      color: #e5e7eb;
-      margin-bottom: 4px;
-    }
-
-    .shop-item-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .shop-cost {
-      font-size: 0.8rem;
-      color: #fde68a;
-    }
+    .shop-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+    .shop-item-title { font-size: 0.9rem; font-weight: 700; }
+    .shop-item-level { font-size: 0.8rem; color: #a5b4fc; font-weight: 600; }
+    .shop-item-desc { font-size: 0.8rem; color: #e5e7eb; margin: 6px 0 6px; }
+    .shop-item-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .shop-cost { font-size: 0.8rem; color: #fde68a; font-weight: 700; }
 
     .shop-buy-btn {
       flex-shrink: 0;
-      padding: 4px 10px;
+      padding: 6px 10px;
       font-size: 0.8rem;
       border-radius: 999px;
       border: none;
       cursor: pointer;
       background: linear-gradient(135deg, #22c55e, #4ade80);
       color: #022c22;
-      font-weight: 600;
+      font-weight: 800;
     }
 
-    .shop-buy-btn:disabled {
-      cursor: default;
-      opacity: 0.35;
-      background: #4b5563;
-      color: #e5e7eb;
+    .shop-buy-btn:disabled { cursor: default; opacity: 0.35; background: #4b5563; color: #e5e7eb; }
+
+    .shop-section { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(148, 163, 184, 0.2); }
+    .shop-section-title { margin: 0 0 6px; font-size: 0.85rem; font-weight: 800; color: #c7d2fe; }
+    .toggles { display: grid; gap: 8px; }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.22);
     }
 
-    .shop-note {
-      margin-top: 6px;
-      font-size: 0.75rem;
-      color: #9ca3af;
+    .toggle label { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #e5e7eb; font-weight: 600; }
+    .toggle input[type="checkbox"] { width: 18px; height: 18px; }
+
+    .records { max-height: 160px; overflow: auto; padding-right: 4px; }
+    .records ol { margin: 6px 0 0 18px; padding: 0; }
+    .records li { font-size: 0.82rem; color: #e5e7eb; margin: 4px 0; }
+    .records small { color: #9ca3af; font-weight: 600; }
+
+    .shop-note { margin-top: 8px; font-size: 0.75rem; color: #9ca3af; }
+
+    .shop-actions { display: flex; gap: 8px; margin-top: 10px; }
+
+    .shop-actions button {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+      color: #0b1220;
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
     }
+
+    .shop-actions button.danger { color: #fff; background: linear-gradient(135deg, #ef4444, #f97316); }
 
     @media (max-width: 640px) {
-      .panel {
-        padding: 24px 20px;
-        margin: 0 14px;
-      }
-      .counter strong {
-        font-size: 1.9rem;
-      }
-      #btn {
-        width: 100%;
-      }
+      .panel { padding: 24px 20px; margin: 0 14px; }
+      .counter strong { font-size: 2rem; }
+      #btn { width: 100%; }
     }
   </style>
 </head>
@@ -360,7 +312,7 @@
   <div id="targets" aria-hidden="true"></div>
 
   <div class="shop-toggle">
-    <button id="shopToggle" class="shop-button" type="button">
+    <button id="shopToggle" class="shop-button" type="button" aria-label="Открыть магазин">
       <span class="icon">🛒</span>
       <span>Магазин</span>
     </button>
@@ -368,32 +320,59 @@
 
   <div id="shopPanel" class="shop-panel" aria-hidden="true">
     <p class="shop-title">Магазин улучшений</p>
-    <p class="shop-balance">Баланс: <span id="shopBalance">0</span> смен</p>
+    <p class="shop-balance">Баланс: <span id="shopBalance">0</span> очков</p>
+
     <div class="shop-items">
       <div class="shop-item">
         <div class="shop-item-header">
           <span class="shop-item-title">Усилить кнопку</span>
           <span class="shop-item-level" id="btnLevel">уровень 1</span>
         </div>
-        <p class="shop-item-desc">Увеличивает очки за нажатие кнопки смены фона.</p>
+        <p class="shop-item-desc">Больше очков за нажатие кнопки.</p>
         <div class="shop-item-footer">
-          <span class="shop-cost" id="btnCost">Цена: 30 смен</span>
+          <span class="shop-cost" id="btnCost">Цена: 30</span>
           <button id="btnBuy" class="shop-buy-btn" type="button">Купить</button>
         </div>
       </div>
+
       <div class="shop-item">
         <div class="shop-item-header">
           <span class="shop-item-title">Усилить мишени</span>
           <span class="shop-item-level" id="targetLevel">уровень 1</span>
         </div>
-        <p class="shop-item-desc">Увеличивает очки за попадания по мишеням.</p>
+        <p class="shop-item-desc">Больше очков за попадания по мишеням.</p>
         <div class="shop-item-footer">
-          <span class="shop-cost" id="targetCost">Цена: 45 смен</span>
+          <span class="shop-cost" id="targetCost">Цена: 45</span>
           <button id="targetBuy" class="shop-buy-btn" type="button">Купить</button>
         </div>
       </div>
     </div>
-    <p class="shop-note">Цены растут с уровнем. Копи смены и усиливайся!</p>
+
+    <div class="shop-section">
+      <p class="shop-section-title">Эффекты</p>
+      <div class="toggles">
+        <div class="toggle">
+          <label><input id="soundToggle" type="checkbox" /> Звук</label>
+          <small>клики/покупки</small>
+        </div>
+        <div class="toggle">
+          <label><input id="vibeToggle" type="checkbox" /> Вибрация</label>
+          <small>если поддерживается</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop-section records">
+      <p class="shop-section-title">Рекорды</p>
+      <ol id="recordsList"></ol>
+    </div>
+
+    <div class="shop-actions">
+      <button id="saveNow" type="button">Сохранить</button>
+      <button id="resetAll" class="danger" type="button">Сброс</button>
+    </div>
+
+    <p class="shop-note">Золотая мишень появляется редко и даёт больше очков.</p>
   </div>
 
   <div class="panel">
@@ -401,8 +380,8 @@
       <span id="label" class="counter-label">Смен цвета:</span>
       <strong id="count">0</strong>
     </p>
-    <button id="btn" type="button">🎨 Сменить фон</button>
-    <p class="hint">Кликай по мишеням — точнее попадание = больше очков</p>
+    <button id="btn" type="button">Сменить фон</button>
+    <p class="hint">Кликай по мишеням — чем ближе к центру, тем больше очков</p>
   </div>
 
   <script>
@@ -412,28 +391,30 @@
       "#fdba74", "#bef264", "#67e8f9", "#7dd3fc", "#818cf8",
       "#e879f9", "#f472b6", "#fcd34d", "#34d399", "#38bdf8",
       "#f87171", "#fb7185", "#fbbf24", "#a3e635", "#2dd4bf",
-      "#22d3ee", "#60a5fa", "#a78bfa", "#e879f9", "#f9a8d4",
+      "#22d3ee", "#60a5fa", "#a78bfa", "#f9a8d4", "#0ea5e9",
       "#ff6b6b", "#ff9f43", "#feca57", "#48dbfb", "#ff9ff3",
       "#54a0ff", "#5f27cd", "#00d2d3", "#ff6348", "#2ed573",
       "#1e90ff", "#ff4757", "#ffa502", "#7bed9f", "#70a1ff",
-      "#5352ed", "#ff6b81", "#dfe6e9", "#fd79a8", "#6c5ce7"
+      "#5352ed", "#ff6b81", "#dfe6e9", "#fd79a8", "#6c5ce7",
+      "#22c55e", "#14b8a6", "#0f766e", "#be123c", "#f97316",
+      "#a855f7", "#4338ca", "#111827", "#e11d48", "#0891b2"
     ];
 
     const labelColors = [
-      "#111827", "#4b5563", "#0369a1", "#7c2d12",
-      "#065f46", "#7c3aed", "#b91c1c", "#0f766e",
-      "#1d4ed8", "#b45309"
+      "#111827", "#4b5563", "#0369a1", "#7c2d12", "#065f46",
+      "#7c3aed", "#b91c1c", "#0f766e", "#1d4ed8", "#b45309",
+      "#be123c", "#0891b2", "#166534"
     ];
+
+    const STORAGE_KEY = "bgGame:v2";
 
     let colorIndex = 0;
     let changeCount = 0;
-
     let buttonLevel = 1;
     let targetLevel = 1;
-    let buttonBase = 1;
-    let targetCenterBase = 15;
-    let targetMidBase = 8;
-    let targetEdgeBase = 3;
+    let soundEnabled = true;
+    let vibeEnabled = false;
+    let records = [];
 
     const countEl = document.getElementById("count");
     const labelEl = document.getElementById("label");
@@ -449,31 +430,92 @@
     const targetCostEl = document.getElementById("targetCost");
     const btnBuy = document.getElementById("btnBuy");
     const targetBuy = document.getElementById("targetBuy");
+    const soundToggle = document.getElementById("soundToggle");
+    const vibeToggle = document.getElementById("vibeToggle");
+    const recordsList = document.getElementById("recordsList");
+    const saveNow = document.getElementById("saveNow");
+    const resetAll = document.getElementById("resetAll");
 
-    function getButtonClickValue() {
-      return buttonBase + (buttonLevel - 1) * 1.5;
+    function safeParse(json) {
+      try { return JSON.parse(json); } catch { return null; }
     }
 
-    function getTargetMultiplier() {
-      return 1 + (targetLevel - 1) * 0.4;
+    function loadState() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const data = raw ? safeParse(raw) : null;
+      if (!data || typeof data !== "object") return;
+
+      if (typeof data.colorIndex === "number") colorIndex = Math.max(0, data.colorIndex) % bgColors.length;
+      if (typeof data.changeCount === "number") changeCount = Math.max(0, Math.floor(data.changeCount));
+      if (typeof data.buttonLevel === "number") buttonLevel = Math.max(1, Math.floor(data.buttonLevel));
+      if (typeof data.targetLevel === "number") targetLevel = Math.max(1, Math.floor(data.targetLevel));
+      if (typeof data.soundEnabled === "boolean") soundEnabled = data.soundEnabled;
+      if (typeof data.vibeEnabled === "boolean") vibeEnabled = data.vibeEnabled;
+      if (Array.isArray(data.records)) records = data.records.slice(0, 10).filter(r => r && typeof r.score === "number");
     }
 
-    function buttonUpgradeCost() {
-      return 30 + (buttonLevel - 1) * 35;
+    function saveState() {
+      const payload = {
+        v: 2,
+        colorIndex,
+        changeCount,
+        buttonLevel,
+        targetLevel,
+        soundEnabled,
+        vibeEnabled,
+        records: records.slice(0, 10),
+        savedAt: Date.now()
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
     }
 
-    function targetUpgradeCost() {
-      return 45 + (targetLevel - 1) * 40;
+    function ensureRecord(score) {
+      const best = records.length ? Math.max(...records.map(r => r.score)) : 0;
+      if (score <= best) return;
+      records.unshift({ score, at: Date.now() });
+      records = records.sort((a, b) => b.score - a.score).slice(0, 10);
     }
 
-    function updateShopUI() {
-      shopBalance.textContent = changeCount.toFixed(0);
-      btnLevelEl.textContent = `уровень ${buttonLevel}`;
-      targetLevelEl.textContent = `уровень ${targetLevel}`;
-      btnCostEl.textContent = `Цена: ${buttonUpgradeCost()} смен`;
-      targetCostEl.textContent = `Цена: ${targetUpgradeCost()} смен`;
-      btnBuy.disabled = changeCount < buttonUpgradeCost();
-      targetBuy.disabled = changeCount < targetUpgradeCost();
+    function renderRecords() {
+      recordsList.innerHTML = "";
+      if (!records.length) {
+        const li = document.createElement("li");
+        li.textContent = "Пока пусто. Набери очки!";
+        recordsList.appendChild(li);
+        return;
+      }
+      for (const r of records) {
+        const li = document.createElement("li");
+        const d = new Date(r.at);
+        const when = `${String(d.getDate()).padStart(2,"0")}.${String(d.getMonth()+1).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+        li.innerHTML = `<strong>${Math.floor(r.score)}</strong> <small>(${when})</small>`;
+        recordsList.appendChild(li);
+      }
+    }
+
+    let audioCtx = null;
+    function beep({ freq = 440, duration = 0.06, type = "sine", gain = 0.04 } = {}) {
+      if (!soundEnabled) return;
+      try {
+        audioCtx ??= new (window.AudioContext || window.webkitAudioContext)();
+        const ctx = audioCtx;
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = type;
+        o.frequency.value = freq;
+        g.gain.value = gain;
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.start();
+        o.stop(ctx.currentTime + duration);
+      } catch {
+        // ignore
+      }
+    }
+
+    function vibrate(pattern) {
+      if (!vibeEnabled) return;
+      if (navigator.vibrate) navigator.vibrate(pattern);
     }
 
     function bumpCounter() {
@@ -481,19 +523,46 @@
       setTimeout(() => countEl.classList.remove("bump"), 220);
     }
 
-    function setCount(value) {
-      changeCount = Math.max(0, value);
-      countEl.textContent = changeCount.toFixed(0);
-      bumpCounter();
+    function updateLabelColor() {
+      const c = labelColors[changeCount % labelColors.length];
+      labelEl.style.color = c;
+    }
 
-      const labelColor = labelColors[changeCount % labelColors.length];
-      labelEl.style.color = labelColor;
+    function updateShopUI() {
+      shopBalance.textContent = String(changeCount);
+      btnLevelEl.textContent = `уровень ${buttonLevel}`;
+      targetLevelEl.textContent = `уровень ${targetLevel}`;
+      const btnCost = 30 + (buttonLevel - 1) * 35;
+      const tgtCost = 45 + (targetLevel - 1) * 40;
+      btnCostEl.textContent = `Цена: ${btnCost}`;
+      targetCostEl.textContent = `Цена: ${tgtCost}`;
+      btnBuy.disabled = changeCount < btnCost;
+      targetBuy.disabled = changeCount < tgtCost;
+      soundToggle.checked = soundEnabled;
+      vibeToggle.checked = vibeEnabled;
+    }
+
+    function setCount(value, { silent = false } = {}) {
+      changeCount = Math.max(0, Math.floor(value));
+      countEl.textContent = changeCount;
+      updateLabelColor();
+      if (!silent) bumpCounter();
+      ensureRecord(changeCount);
+      renderRecords();
+      updateShopUI();
+      saveState();
     }
 
     function addToCount(amount) {
-      if (amount <= 0) return;
       setCount(changeCount + amount);
-      updateShopUI();
+    }
+
+    function getButtonClickValue() {
+      return 1 + (buttonLevel - 1) * 2;
+    }
+
+    function getTargetMultiplier() {
+      return 1 + (targetLevel - 1) * 0.45;
     }
 
     function showPlus(value, x, y, type) {
@@ -501,7 +570,8 @@
       el.className = "plus-float";
       if (type === "center") el.classList.add("center");
       if (type === "edge") el.classList.add("edge");
-      el.textContent = `+${value.toFixed(0)}`;
+      if (type === "gold") el.classList.add("gold");
+      el.textContent = `+${Math.floor(value)}`;
       el.style.left = x + "px";
       el.style.top = y + "px";
       document.body.appendChild(el);
@@ -511,11 +581,31 @@
     btn.addEventListener("click", () => {
       colorIndex = (colorIndex + 1) % bgColors.length;
       document.body.style.backgroundColor = bgColors[colorIndex];
-      const value = getButtonClickValue();
-      addToCount(value);
+      const v = getButtonClickValue();
+      addToCount(v);
       const rect = btn.getBoundingClientRect();
-      showPlus(value, rect.left + rect.width / 2, rect.top, "button");
+      showPlus(v, rect.left + rect.width / 2, rect.top, "button");
+      beep({ freq: 520, duration: 0.05, type: "triangle", gain: 0.035 });
+      vibrate(12);
     });
+
+    function getHitValue(e, rect, isGold) {
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const radius = rect.width / 2;
+      const normalized = dist / radius;
+
+      const baseCenter = isGold ? 40 : 15;
+      const baseMid = isGold ? 20 : 8;
+      const baseEdge = isGold ? 8 : 3;
+
+      if (normalized <= 0.22) return { base: baseCenter, type: isGold ? "gold" : "center" };
+      if (normalized <= 0.55) return { base: baseMid, type: isGold ? "gold" : "mid" };
+      return { base: baseEdge, type: isGold ? "gold" : "edge" };
+    }
 
     function spawnTarget() {
       const size = 76;
@@ -537,11 +627,11 @@
         y < panel.bottom + 20
       );
 
+      const isGold = Math.random() < 0.08;
       const target = document.createElement("button");
       target.type = "button";
-      target.className = "target";
-      target.setAttribute("aria-label", "Мишень");
-
+      target.className = isGold ? "target gold" : "target";
+      target.setAttribute("aria-label", isGold ? "Золотая мишень" : "Мишень");
       target.style.left = x + "px";
       target.style.top = y + "px";
 
@@ -551,37 +641,17 @@
         if (hit) return;
         hit = true;
         e.stopPropagation();
-
         const rect = target.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const dx = e.clientX - centerX;
-        const dy = e.clientY - centerY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const radius = rect.width / 2;
-        const normalized = dist / radius;
-
-        let baseValue;
-        let type;
-
-        if (normalized <= 0.22) {
-          baseValue = targetCenterBase;
-          type = "center";
-        } else if (normalized <= 0.55) {
-          baseValue = targetMidBase;
-          type = "mid";
-        } else {
-          baseValue = targetEdgeBase;
-          type = "edge";
-        }
-
-        const finalValue = baseValue * getTargetMultiplier();
+        const hv = getHitValue(e, rect, isGold);
+        const finalValue = hv.base * getTargetMultiplier();
         addToCount(finalValue);
-        showPlus(finalValue, centerX, centerY, type);
+        showPlus(finalValue, rect.left + rect.width / 2, rect.top + rect.height / 2, hv.type);
+        beep({ freq: isGold ? 880 : 660, duration: 0.06, type: isGold ? "square" : "sine", gain: 0.03 });
+        vibrate(isGold ? [12, 20, 12] : 10);
 
         target.style.animation = "none";
         target.style.opacity = "0";
-        target.style.transform = "scale(1.4)";
+        target.style.transform = "scale(1.45)";
         target.style.transition = "opacity 0.25s ease, transform 0.25s ease";
         setTimeout(() => target.remove(), 260);
       });
@@ -593,31 +663,82 @@
       targetsLayer.appendChild(target);
     }
 
-    spawnTarget();
-    setInterval(spawnTarget, 1900);
-
     shopToggle.addEventListener("click", () => {
       const open = shopPanel.classList.toggle("open");
       shopPanel.setAttribute("aria-hidden", open ? "false" : "true");
+      if (open) {
+        beep({ freq: 420, duration: 0.05, type: "triangle", gain: 0.03 });
+        vibrate(8);
+      }
     });
 
     btnBuy.addEventListener("click", () => {
-      const cost = buttonUpgradeCost();
+      const cost = 30 + (buttonLevel - 1) * 35;
       if (changeCount < cost) return;
       setCount(changeCount - cost);
       buttonLevel += 1;
       updateShopUI();
+      saveState();
+      beep({ freq: 740, duration: 0.07, type: "sawtooth", gain: 0.03 });
+      vibrate([10, 20, 10]);
     });
 
     targetBuy.addEventListener("click", () => {
-      const cost = targetUpgradeCost();
+      const cost = 45 + (targetLevel - 1) * 40;
       if (changeCount < cost) return;
       setCount(changeCount - cost);
       targetLevel += 1;
       updateShopUI();
+      saveState();
+      beep({ freq: 700, duration: 0.07, type: "sawtooth", gain: 0.03 });
+      vibrate([10, 20, 10]);
     });
 
+    soundToggle.addEventListener("change", () => {
+      soundEnabled = !!soundToggle.checked;
+      saveState();
+      beep({ freq: 500, duration: 0.04, type: "triangle", gain: 0.03 });
+    });
+
+    vibeToggle.addEventListener("change", () => {
+      vibeEnabled = !!vibeToggle.checked;
+      saveState();
+      vibrate(20);
+    });
+
+    saveNow.addEventListener("click", () => {
+      saveState();
+      beep({ freq: 560, duration: 0.05, type: "triangle", gain: 0.03 });
+      vibrate(10);
+    });
+
+    resetAll.addEventListener("click", () => {
+      const ok = confirm("Сбросить прогресс, улучшения и рекорды? Это нельзя отменить.");
+      if (!ok) return;
+      colorIndex = 0;
+      buttonLevel = 1;
+      targetLevel = 1;
+      records = [];
+      soundEnabled = true;
+      vibeEnabled = false;
+      localStorage.removeItem(STORAGE_KEY);
+      document.body.style.backgroundColor = "#f5f5f5";
+      setCount(0, { silent: true });
+      updateShopUI();
+      renderRecords();
+      beep({ freq: 260, duration: 0.08, type: "square", gain: 0.03 });
+      vibrate([20, 40, 20]);
+    });
+
+    // init
+    loadState();
+    document.body.style.backgroundColor = bgColors[colorIndex] ?? "#f5f5f5";
     updateShopUI();
+    renderRecords();
+    setCount(changeCount, { silent: true });
+    updateLabelColor();
+    spawnTarget();
+    setInterval(spawnTarget, 1900);
   </script>
 </body>
 </html>
